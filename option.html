@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>QuickSwagger</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      label {
+        display: block;
+      }
+      textarea {
+        font-family: monospace;
+      }
+      .message {
+        height: 20px;
+        background: #eee;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message"></div>
+    <h3>Quick Swagger Instructions</h3>
+
+    <ol>
+      <li>下方输入框填写api文档的url(git仓库地址:http://swagger.cookee.com.cn/projects/ckapp2_svr/repository/revisions/master/raw/swagger.yaml),保存</li>
+      <li>打开swagger.cookee.com.cn</li>
+      <li>点击地址栏最右的扩展按钮<img src="icon_16.png" />,即可从git仓库下载最新的api文档</li>
+    </ol>
+
+    <textarea name="style_url" id="style_url" cols=40 rows=24></textarea>
+
+    <br/>
+    <button class="submit">Save</button>
+    <button class="reset">Reset</button>
+
+    <script src="options.js"></script>
+  </body>
+</html>

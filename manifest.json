@@ -1,0 +1,37 @@
+{
+    "manifest_version": 2,
+
+    "name": "Quick Swagger",
+    "description": "从git仓库加载api文档.",
+    "version": "1.0",
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "icons": {
+        "16": "icon_16.png",
+        "32": "icon_32.png",
+        "48": "icon_48.png",
+        "128": "icon_128.png"
+    },
+    "page_action": {
+        "default_icon": {
+            "16": "icon_16.png",
+            "32": "icon_32.png"
+        }
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage",
+        "http://swagger.cookee.com.cn/*"
+    ],
+
+    "options_page": "option.html",
+    "content_scripts": [{
+        "matches": ["http://swagger.cookee.com.cn/*"],
+        "js": [
+            "jquery-2.0.0.min.js",
+            "quickSwagger.js"
+        ]
+    }]
+}
