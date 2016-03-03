@@ -1,9 +1,9 @@
 function quickSwagger() {
 
     var chromeStorage = chrome.storage.local;
-    chromeStorage.get('apiAdd', function(item) {
-        if (item.apiAdd) {
-            $.get(item.apiAdd, function(res) {
+    chromeStorage.get('apiUrl', function(item) {
+        if (item.apiUrl) {
+            $.get(item.apiUrl, function(res) {
                 var data = {}
                 data.yaml = res;
 

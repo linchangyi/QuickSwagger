@@ -2,14 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Store apiAdd data in the "local" storage area.
+// Store apiUrl data in the "local" storage area.
 //
 // Usually we try to store settings in the "sync" area since a lot of the time
 // it will be a better user experience for settings to automatically sync
 // between browsers.
 //
 // However, "sync" is expensive with a strict quota (both in storage space and
-// bandwidth) so data that may be as large and updated as frequently as the apiAdd
+// bandwidth) so data that may be as large and updated as frequently as the apiUrl
 // may not be suitable.
 var storage = chrome.storage.local;
 
@@ -18,34 +18,34 @@ var resetButton = document.querySelector('button.reset');
 var submitButton = document.querySelector('button.submit');
 var textarea = document.querySelector('textarea');
 
-// Load any apiAdd that may have previously been saved.
+// Load any apiUrl that may have previously been saved.
 loadChanges();
 
 submitButton.addEventListener('click', saveChanges);
 resetButton.addEventListener('click', reset);
 
 function saveChanges() {
-  // Get the current apiAdd snippet from the form.
-  var apiAddCode = textarea.value;
+  // Get the current apiUrl snippet from the form.
+  var apiUrlCode = textarea.value;
   // Check that there's some code there.
-  if (!apiAddCode) {
-    message('Error: No apiAdd specified');
+  if (!apiUrlCode) {
+    message('Error: No apiUrl specified');
     return;
   }
   // Save it using the Chrome extension storage API.
-  storage.set({'apiAdd': apiAddCode}, function() {
+  storage.set({'apiUrl': apiUrlCode}, function() {
     // Notify that we saved.
     message('Settings saved');
   });
 }
 
 function loadChanges() {
-  storage.get('apiAdd', function(items) {
-    // To avoid checking items.apiAdd we could specify storage.get({apiAdd: ''}) to
-    // return a default value of '' if there is no apiAdd value yet.
-    if (items.apiAdd) {
-      textarea.value = items.apiAdd;
-      message('Loaded saved apiAdd.');
+  storage.get('apiUrl', function(items) {
+    // To avoid checking items.apiUrl we could specify storage.get({apiUrl: ''}) to
+    // return a default value of '' if there is no apiUrl value yet.
+    if (items.apiUrl) {
+      textarea.value = items.apiUrl;
+      message('Loaded saved apiUrl.');
     }
   });
 }
@@ -53,8 +53,8 @@ function loadChanges() {
 function reset() {
   // Remove the saved value from storage. storage.clear would achieve the same
   // thing.
-  storage.remove('apiAdd', function(items) {
-    message('Reset stored apiAdd');
+  storage.remove('apiUrl', function(items) {
+    message('Reset stored apiUrl');
   });
   // Refresh the text area.
   textarea.value = '';

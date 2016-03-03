@@ -8,11 +8,15 @@ function getDomainFromUrl(url){
 		host = match[1];
 	return host;
 }
-
+//检查域名
 function checkForValidUrl(tabId, changeInfo, tab) {
-	if(getDomainFromUrl(tab.url).toLowerCase()=="swagger.cookee.com.cn"){
-		chrome.pageAction.show(tabId);
-	}
+	var chromeStorage = chrome.storage.local;
+	chromeStorage.get('apiUrl', function(item) {
+        if (item.apiUrl && getDomainFromUrl(item.apiUrl)==getDomainFromUrl(tab.url)) {
+            chrome.pageAction.show(tabId);
+        }
+    });
+
 };
 
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
